@@ -1,0 +1,139 @@
+header {
+  background-color: #212529;
+  color: #838588;
+}
+
+.header__sticky {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.header__nav {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 20px;
+  padding-top: 20px;
+  .logo {
+    margin-top: 5px;
+    font-weight: 500;
+    font-size: 32px;
+    color: var(--corporate-green);
+  }
+  .nav__button {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    background-color: #4fc553da;
+    border-radius: 10px;
+    padding: 10px;
+    span {
+      padding-top: 10px;
+      color: var(--bg-color-dark);
+      font-weight: 600;
+      font-size: 16px;
+    }
+  }
+  .nav__button:hover {
+    background-color: #4fc553bd;
+  }
+  .nav__list {
+    display: flex;
+    column-gap: 40px;
+    font-weight: 600;
+    font-size: 13px;
+    padding-top: 10px;
+    li {
+      position: relative;
+    }
+    .nav__item {
+      display: flex;
+      flex-direction: column;
+      text-align: center;
+      align-items: center;
+      svg {
+        font-size: 18px;
+        font-weight: 600;
+      }
+    }
+  }
+}
+
+.cart__popup {
+  position: absolute;
+  padding: 20px;
+  border-radius: 20px;
+  color: white;
+  background-color: var(--block-border-color);
+  max-height: 250px;
+  width: 400px;
+  right: calc(100% - 70px);
+  margin-top: 7px;
+  &__title {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    font-size: 16px;
+    margin-bottom: 10px;
+    span {
+      color: var(--main-grey-color);
+    }
+  }
+  &__item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5px;
+    span {
+      color: var(--main-grey-color);
+    }
+  }
+}
+
+.user__popup {
+  position: absolute;
+  padding: 20px;
+  border-radius: 20px;
+  color: white;
+  background-color: var(--block-border-color);
+  max-height: 250px;
+  width: 260px;
+  right: calc(100% - 150px);
+  margin-top: 7px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  hr {
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid var(--main-grey-color);
+    margin: 1em 0;
+    padding: 0;
+  }
+  a {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 768px) {
+  .header__nav {
+    display: grid;
+    row-gap: 15px;
+    justify-content: stretch;
+    padding-bottom: 15px;
+    .nav__button {
+      display: none;
+    }
+    .logo {
+      margin-top: 0px;
+    }
+  }
+  .nav__list {
+    opacity: 1;
+    position: absolute;
+    top: 25px;
+    right: 35px;
+    .nav__item {
+      font-size: 0px;
+    }
+  }
+}

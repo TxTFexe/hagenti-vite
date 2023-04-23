@@ -1,0 +1,41 @@
+footer{
+    padding-top: 15px;
+    background-color: #212529;
+    color: #838588;
+    padding-bottom: 15px;
+    width: 100%;
+}
+
+.footer__content{
+    display: flex;
+    justify-content: space-between;
+    h1{
+        font-size: 20px;
+        font-weight: 600;
+    }
+}
+
+.footer__container{
+    max-width: 1230px;
+    padding: 20px 30px;
+    margin: 0 auto;
+}
+
+.social__network__icons{
+    a{
+        padding-right: 5px;
+        svg{
+            font-size: 28px;
+        }
+    }
+} 
+
+.social__network__icons a:hover{
+    color: #838588;
+}
+
+@media (max-width: 412px){
+    .footer__content{
+        display: grid;
+    }
+}
