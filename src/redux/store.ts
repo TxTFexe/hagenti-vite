@@ -4,10 +4,12 @@ import filter from "./slices/filterSlice";
 import products from "./slices/productsSlice";
 import search from "./slices/searchSlice";
 import favorite from "./slices/favoriteSlice";
+import auth from "./slices/authSlice";
 import { useDispatch } from "react-redux";
 
 export const store = configureStore({
   reducer: {
+    auth,
     cart,
     filter,
     products,

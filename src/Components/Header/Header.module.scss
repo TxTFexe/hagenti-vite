@@ -53,6 +53,11 @@ header {
       svg {
         font-size: 18px;
         font-weight: 600;
+        height: 20px;
+        z-index: -10;
+        width: 20px;
+        // filter: invert(48%) sepia(79%) saturate(2476%) hue-rotate(86deg)
+        //   brightness(118%) contrast(0%);
       }
     }
   }
@@ -68,6 +73,7 @@ header {
   width: 400px;
   right: calc(100% - 70px);
   margin-top: 7px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
   &__title {
     display: flex;
     flex-direction: row;
@@ -101,6 +107,7 @@ header {
   text-align: center;
   display: flex;
   flex-direction: column;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
   hr {
     display: block;
     height: 1px;

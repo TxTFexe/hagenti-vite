@@ -57,6 +57,18 @@ p {
   color: var(--main-grey-color);
 }
 
+input:-webkit-autofill,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+  border: none;
+  -webkit-text-fill-color: #fff;
+  transition: background-color 5000s ease-in-out 0s;
+}
+
 .container {
   max-width: 1230px;
   padding: 0 30px;
@@ -130,7 +142,7 @@ main {
 
 .modal {
   position: fixed;
-  z-index: 1;
+  z-index: 2000;
   height: 100%;
   width: 100%;
   top: 0;
@@ -146,6 +158,12 @@ main {
   display: flex;
   justify-content: center;
   color: var(--main-grey-color);
+  h2 {
+    margin-right: 7px;
+  }
+  &:hover {
+    cursor: pointer;
+  }
 }
 
 .modal__mode {
@@ -165,9 +183,14 @@ main {
     padding-left: 5px;
     width: 100%;
     height: 50px;
-    font-weight: 600;
-    font-size: 16px;
+    font-weight: 550;
+    font-size: 17px;
   }
+}
+
+.modal__error {
+  margin-top: 15px;
+  color: rgb(226, 39, 39);
 }
 
 .modal-content {
@@ -189,8 +212,15 @@ main {
   position: absolute;
   right: 0;
   top: 0;
+  height: 20px;
+  width: 20px;
+  background-color: #31373d;
+  border-radius: 100px;
+  color: var(--main-grey-color);
+  transition: 0.3s;
   &:hover {
-    color: var(--corporate-green);
+    color: #fff;
+    cursor: pointer;
   }
 }
 
@@ -244,7 +274,8 @@ main {
   // margin-left: 15px;
   // margin-right: 15px;
   a {
-    font-size: 18px;
+    font-size: 19px;
+    font-weight: 550;
   }
   a:hover {
     // border-bottom: solid #57d75b 0.1px;
@@ -1130,11 +1161,22 @@ details > summary {
 }
 
 .slick-prev:before {
+  font-size: 30px;
   color: var(--main-grey-color);
 }
 
 .slick-next:before {
+  font-size: 30px;
   color: var(--main-grey-color);
+}
+
+.slick-next {
+  right: 30px;
+}
+
+.slick-prev {
+  left: 20px;
+  z-index: 10;
 }
 
 .account__header {

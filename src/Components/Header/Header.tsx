@@ -3,15 +3,18 @@ import { FiShoppingCart, FiUser } from "react-icons/fi";
 import { AiOutlineHeart } from "react-icons/ai";
 import NavItemCount from "./NavItemCount";
 import { Link } from "react-router-dom";
-import ModalLogin from "../ModalLogin";
+import ModalLogin from "../ModalAuth/ModalLogin";
 import Search from "./Search/Search";
 import headerStyles from "./Header.module.scss";
 import CartPopup from "./CartPopup";
 import UserPopup from "./UserPopup";
 import { useSelector } from "react-redux";
 import { RootState } from "../../redux/store";
+import { selectIsAuth } from "../../redux/slices/authSlice";
 
 const Header: React.FC = () => {
+  const isAuth = useSelector(selectIsAuth);
+  const userData: any = useSelector((state: RootState) => state.auth.data);
   const [authVisible, setAuthVisible] = useState(false);
   const [showCartPopup, setShowCartPopup] = useState(false);
   const [showUserPopup, setShowUserPopup] = useState(false);
@@ -40,17 +43,16 @@ const Header: React.FC = () => {
               onMouseEnter={() => setShowUserPopup(true)}
               onMouseLeave={() => setShowUserPopup(false)}
             >
-              <Link
-                to={"/"}
+              <a
                 className={headerStyles.nav__item}
-                onClick={toggleAuthVisible}
+                onClick={isAuth ? () => {} : toggleAuthVisible}
               >
                 <FiUser />
-                {authVisible && <ModalLogin onClose={toggleAuthVisible} />}
-                {/*Создать способ вытягивания имени активного пользователя*/}
-                Вадим
-              </Link>
-              <div className={showUserPopup ? "opacity_1" : "opacity_0"}>
+                {isAuth ? userData?.fullName.replace(/ .*/, "") : "Войти"}
+              </a>
+              <div
+                className={showUserPopup && isAuth ? "opacity_1" : "opacity_0"}
+              >
                 <UserPopup />
               </div>
             </li>
@@ -80,6 +82,7 @@ const Header: React.FC = () => {
               </div>
             </li>
           </ul>
+          {authVisible && <ModalLogin onClose={toggleAuthVisible} />}
         </div>
       </div>
     </header>

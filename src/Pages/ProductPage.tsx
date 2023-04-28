@@ -275,7 +275,9 @@ const ProductPage: React.FC = () => {
         {currentSection === 1 && (
           <div className="product__feedback">
             {[...new Array(showReviews)].map((_, index) => (
-              <div className="product__feedback__item">1</div>
+              <div key={index} className="product__feedback__item">
+                1
+              </div>
             ))}
             <button onClick={() => setShowReviews((prev) => prev + 5)}>
               Показать ещё
