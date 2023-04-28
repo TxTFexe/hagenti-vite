@@ -57,7 +57,7 @@ const Home: React.FC = () => {
   const data = [
     {
       name: "RTX 3080",
-      image: rtx2080,
+      image: '',
       price: "64999",
       link: "/GPU/1",
     },
@@ -77,25 +77,25 @@ const Home: React.FC = () => {
     },
     {
       name: "RTX 3080",
-      image: rtx2080,
+      image: '',
       price: "64999",
       link: "/GPU/1",
     },
     {
       name: "RTX 3080",
-      image: rtx2080,
+      image: '',
       price: "64999",
       link: "/GPU/1",
     },
     {
       name: "RTX 3080",
-      image: rtx2080,
+      image: '',
       price: "64999",
       link: "/GPU/1",
     },
     {
       name: "RTX 3080",
-      image: rtx2080,
+      image: '',
       price: "64999",
       link: "/GPU/1",
     },
