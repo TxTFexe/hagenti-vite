@@ -2,7 +2,7 @@ import React, { useRef, useState, useEffect } from "react";
 import { Categories } from "../Components";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-//import rtx2080 from "../assets/Img/rtx2080.png";
+import rtx2080 from "../assets/Img/rtx2080.png";
 import banner2 from "../Assets/Img/TestBanner1.png";
 import banner3 from "../Assets/Img/TestBanner2.png";
 import mainBanner from "../Assets/Img/Mainbanner.png";
@@ -57,7 +57,7 @@ const Home: React.FC = () => {
   const data = [
     {
       name: "RTX 3080",
-      image: '',
+      image: rtx2080,
       price: "64999",
       link: "/GPU/1",
     },
@@ -77,25 +77,25 @@ const Home: React.FC = () => {
     },
     {
       name: "RTX 3080",
-      image: '',
+      image: rtx2080,
       price: "64999",
       link: "/GPU/1",
     },
     {
       name: "RTX 3080",
-      image: '',
+      image: rtx2080,
       price: "64999",
       link: "/GPU/1",
     },
     {
       name: "RTX 3080",
-      image: '',
+      image: rtx2080,
       price: "64999",
       link: "/GPU/1",
     },
     {
       name: "RTX 3080",
-      image: '',
+      image: rtx2080,
       price: "64999",
       link: "/GPU/1",
     },
