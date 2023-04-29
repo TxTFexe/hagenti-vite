@@ -2,7 +2,7 @@ import React, { useRef, useState, useEffect } from "react";
 import { Categories } from "../Components";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import rtx2080 from "../Assets/Img/rtx2080.png";
+import rtx2080 from "/../Assets/Img/rtx2080.png";
 import banner2 from "../Assets/Img/TestBanner1.png";
 import banner3 from "../Assets/Img/TestBanner2.png";
 import mainBanner from "../Assets/Img/Mainbanner.png";
