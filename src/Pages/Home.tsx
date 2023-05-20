@@ -3,7 +3,7 @@ import { Categories } from "../Components";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import rtx2080 from "../assets/Img/rtx2080.png";
-import banner2 from "../Assets/Img/TestBanner1.png";
+// import banner2 from "../Assets/Img/TestBanner1.png";
 import banner3 from "../Assets/Img/TestBanner2.png";
 import mainBanner from "../Assets/Img/Mainbanner.png";
 import Slider from "react-slick";
@@ -103,7 +103,7 @@ const Home: React.FC = () => {
 
   const bannerImages = [
     { img: mainBanner, src: "/Category/GPU/1" },
-    { img: banner2, src: "/Category/GPU/1" },
+    { img: banner3, src: "/Category/GPU/1" },
     { img: banner3, src: "/Category/GPU/1" },
   ];
 
