@@ -47,7 +47,6 @@ const LoginForm: React.FC = () => {
         className="inputText"
         placeholder="Пароль"
       />
-      {/* {errors?.email && (<div>{errors.email.message}</div>)} !!!Сообщение об ошибке!!! */}
       {cantAuth && (
         <div className="modal__error">
           Не удалось авторизоваться, неверный логин или пароль

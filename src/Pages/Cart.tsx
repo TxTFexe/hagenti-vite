@@ -18,6 +18,10 @@ const Cart: React.FC = () => {
     dispatch(clearItems());
   };
 
+  React.useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <div className="container">
       <div className="cart">

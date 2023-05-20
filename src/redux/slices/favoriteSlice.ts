@@ -3,7 +3,7 @@ import { getCartFromLS } from "../../utils/getCartFromLS";
 import { calcTotalCount } from "../../utils/calcTotalCount";
 import { findItemInCart } from "../../utils/findItemInCart";
 
-export type FavoriteItem = {
+export type Product = {
     id: string,
     pic: string,
     type: string,
@@ -14,7 +14,7 @@ export type FavoriteItem = {
 
 interface FavoriteSliceState {
     totalCount: number;
-    items: FavoriteItem[];
+    items: Product[];
 }
 
 const initialState: FavoriteSliceState = {
@@ -26,7 +26,7 @@ const favoriteSlice = createSlice({
     name: 'favorite',
     initialState,
     reducers: {
-        addFavoriteItem(state, action: PayloadAction<FavoriteItem>) {
+        addFavoriteItem(state, action: PayloadAction<Product>) {
             const findItem = findItemInCart(state.items, action.payload.id)
 
             if (findItem) {

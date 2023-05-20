@@ -4,15 +4,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { AiOutlineHeart } from "react-icons/ai";
 import { useNavigate, useParams } from "react-router-dom";
 import { addItem } from "../redux/slices/cartSlice";
-
-type Product = {
-  id: string;
-  pic: string;
-  type: string;
-  name: string;
-  price: number;
-  count: number;
-};
+import { useAppDispath } from "../redux/store";
+import { addFavoriteItem } from "../redux/slices/favoriteSlice";
+import { Product } from "../redux/slices/favoriteSlice";
 
 const ProductPage: React.FC = () => {
   const dispatch = useDispatch();
@@ -35,7 +29,7 @@ const ProductPage: React.FC = () => {
           "https://static.gigabyte.com/StaticFile/Image/Global/303d4516244d408a66af70a74dfb8fe6/Product/26169",
         ]);
       } catch (error) {
-        alert(error);
+        console.log(error);
         navigate("/");
       }
     }
@@ -57,6 +51,25 @@ const ProductPage: React.FC = () => {
       type,
     };
     dispatch(addItem(item));
+  };
+
+  const onClickAddToFavorite = ({
+    id,
+    name,
+    price,
+    pic,
+    count,
+    type,
+  }: Product) => {
+    const item = {
+      id,
+      name,
+      price,
+      pic,
+      count,
+      type,
+    };
+    dispatch(addFavoriteItem(item));
   };
 
   const sections = ["Характеристики", "Отзывы"];
@@ -89,6 +102,14 @@ const ProductPage: React.FC = () => {
     if (!(numberSlide < 2)) {
       swapImages(numberSlide - 1);
     }
+  };
+
+  const setSection = (i: number) => {
+    setCurrentSection(i);
+    window.scrollTo({
+      top: 720,
+      behavior: "smooth",
+    });
   };
 
   React.useEffect(() => {
@@ -178,7 +199,7 @@ const ProductPage: React.FC = () => {
                 <h3>{Number(product.price).toLocaleString()}₽</h3>
                 <h4>{Math.round(product.price / 4).toLocaleString()}₽ x 4</h4>
                 <span>Долями</span>
-                <button>
+                <button onClick={() => onClickAddToFavorite(product)}>
                   <AiOutlineHeart />
                 </button>
               </div>
@@ -246,7 +267,7 @@ const ProductPage: React.FC = () => {
                   ? "product__sections__title active__product__section"
                   : "product__sections__title"
               }
-              onClick={() => setCurrentSection(i)}
+              onClick={() => setSection(i)}
             >
               {section}
             </p>

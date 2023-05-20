@@ -42,6 +42,10 @@ const Search: React.FC = React.memo(() => {
     document.body.addEventListener("click", (e: any) => {
       if (!e.composedPath().includes(searchRef.current)) {
         setSuggestions(false);
+      } else if (
+        e.target.parentElement.className === searchStyles.suggestions
+      ) {
+        setSuggestions(false);
       } else {
         setSuggestions(true);
       }
@@ -74,7 +78,7 @@ const Search: React.FC = React.memo(() => {
           </button>
         </form>
       </div>
-      {suggestions && value && (
+      {suggestions && (
         <div className={searchStyles.suggestions__container}>
           <div className={searchStyles.suggestions}>
             <Link to={"/GPU/1"}>GIGABYTE AORUS GeForce RTX 3080</Link>

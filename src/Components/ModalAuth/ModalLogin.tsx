@@ -18,9 +18,15 @@ const ModalLogin: React.FC<ModalLoginProps> = ({ onClose }) => {
     onClose();
   }
 
+  const outsideModalClick = (e: React.MouseEvent) => {
+    if (e.target.className === "modal active") {
+      onClose();
+    }
+  };
+
   return (
     <>
-      <div className="modal active">
+      <div className="modal active" onClick={(e) => outsideModalClick(e)}>
         <div className="modal-content">
           <div className="p-relative">
             <div className="modal__title">

@@ -14,7 +14,6 @@ import { selectIsAuth } from "../../redux/slices/authSlice";
 
 const Header: React.FC = () => {
   const isAuth = useSelector(selectIsAuth);
-  const userData: any = useSelector((state: RootState) => state.auth.data);
   const [authVisible, setAuthVisible] = useState(false);
   const [showCartPopup, setShowCartPopup] = useState(false);
   const [showUserPopup, setShowUserPopup] = useState(false);
@@ -31,12 +30,14 @@ const Header: React.FC = () => {
     <header className={headerStyles.header__sticky}>
       <div className="container">
         <div className={headerStyles.header__nav}>
-          <Link to="/" className={headerStyles.logo}>
-            Hagenti
-          </Link>
-          <Link to="/Configurator" className={headerStyles.nav__button}>
-            <span>Конфигуратор ПК</span>
-          </Link>
+          <div className={headerStyles.logo__and__btn__container}>
+            <Link to="/" className={headerStyles.logo}>
+              <span>Hagenti</span>
+            </Link>
+            <Link to="/Configurator" className={headerStyles.nav__button}>
+              <span>Конфигуратор ПК</span>
+            </Link>
+          </div>
           <Search />
           <ul className={headerStyles.nav__list}>
             <li
@@ -48,7 +49,7 @@ const Header: React.FC = () => {
                 onClick={isAuth ? () => {} : toggleAuthVisible}
               >
                 <FiUser />
-                {isAuth ? userData?.fullName.replace(/ .*/, "") : "Войти"}
+                {/* {isAuth ? userData?.fullName : "Войти"} */}
               </a>
               <div
                 className={showUserPopup && isAuth ? "opacity_1" : "opacity_0"}
@@ -59,7 +60,7 @@ const Header: React.FC = () => {
             <li>
               <Link to={"/Favorite"} className={headerStyles.nav__item}>
                 <AiOutlineHeart className="nav-item-icon" />
-                Избранное
+                {/* Избранное */}
               </Link>
             </li>
             <li
@@ -69,7 +70,7 @@ const Header: React.FC = () => {
               <NavItemCount props={[items, totalCount]} />
               <Link to={"/Cart"} className={headerStyles.nav__item}>
                 <FiShoppingCart className="nav-item-icon" />
-                Корзина
+                {/* Корзина */}
               </Link>
               <div className={showCartPopup ? "opacity_1" : "opacity_0"}>
                 {totalCount > 0 && (

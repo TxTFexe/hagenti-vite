@@ -135,7 +135,7 @@ main {
   padding: 0 5px;
   text-align: center;
   font-weight: 500;
-  margin: -6px 0 0 27px;
+  margin: -6px 0 0 10px;
   color: var(--bg-color-dark);
   pointer-events: none;
 }
@@ -911,6 +911,14 @@ details > summary {
   }
   button {
     height: 35px;
+    svg {
+      height: 20px;
+      width: 20px;
+      transition: 0.2s;
+    }
+    svg:hover {
+      color: red;
+    }
   }
 }
 
@@ -1205,6 +1213,114 @@ details > summary {
     padding: 30px;
     margin-bottom: 20px;
   }
+}
+
+.user_cabinet_grid {
+  display: flex;
+}
+
+.user_cabinet__orders {
+  display: flex;
+  margin-right: 26px;
+  width: 60%;
+  justify-content: space-between;
+  padding: 30px;
+  background: #212529;
+  border: solid #262a2e 1px;
+  border-radius: 15px;
+  h1 {
+    color: var(--main-grey-color);
+    font-size: 19px;
+  }
+}
+
+.user_cabinet__info {
+  display: flex;
+  height: 154px;
+  width: 40%;
+  justify-content: space-between;
+  flex-direction: column;
+  padding: 30px;
+  background: #212529;
+  border: solid #262a2e 1px;
+  border-radius: 15px;
+  h1 {
+    color: var(--main-grey-color);
+    font-size: 19px;
+    margin-bottom: 15px;
+  }
+  span {
+    color: var(--main-grey-color);
+    margin-bottom: 8px;
+  }
+}
+
+.configurator__layout {
+  margin-top: 26px;
+  display: flex;
+  margin-bottom: 26px;
+}
+
+.configurator {
+  display: flex;
+  margin-right: 26px;
+  width: 60%;
+  justify-content: space-between;
+  align-items: center;
+  padding: 30px;
+  background: #d3d3d3;
+  border: solid #afafaf 1px;
+  border-radius: 15px;
+}
+
+.configurator__settings {
+  display: flex;
+  height: 800px;
+  width: 40%;
+  justify-content: space-between;
+  flex-direction: column;
+  padding: 30px;
+  background: #212529;
+  border: solid #262a2e 1px;
+  height: auto;
+  border-radius: 15px;
+
+  span {
+    color: var(--main-grey-color);
+    font-size: 19px;
+  }
+}
+
+.configurator-select__control--is-focused {
+  border-color: none !important;
+}
+
+.configurator-select__control {
+  margin-top: 12px;
+  margin-bottom: 12px;
+  background-color: var(--block-bg-color) !important;
+  &--menu-is-open {
+    border: 2px;
+    border-color: var(--corporate-green) !important;
+    box-shadow: none !important;
+  }
+  &--is-focused {
+    border: 2px;
+    border-color: var(--corporate-green) !important;
+    box-shadow: none !important;
+  }
+}
+
+.configurator-select__single-value {
+  color: var(--bg-color-light) !important;
+}
+
+.configurator-select__input {
+  color: var(--main-grey-color) !important;
+}
+
+.configurator__case {
+  height: 400px;
 }
 
 @media (min-width: 976px) and (max-width: 1228px) {
