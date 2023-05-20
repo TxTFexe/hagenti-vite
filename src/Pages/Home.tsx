@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import rtx2080 from "../assets/Img/rtx2080.png";
 // import banner2 from "../Assets/Img/TestBanner1.png";
 // import banner3 from "../Assets/Img/TestBanner2.png";
-import mainBanner from "../Assets/Img/Mainbanner.png";
+// import mainBanner from "../Assets/Img/Mainbanner.png";
 import Slider from "react-slick";
 
 import "slick-carousel/slick/slick.scss";
@@ -101,7 +101,12 @@ const Home: React.FC = () => {
     },
   ];
 
-  const bannerImages = [{ img: mainBanner, src: "/Category/GPU/1" }];
+  const bannerImages = [
+    {
+      img: "https://cdn.discordapp.com/attachments/950811967742947348/1109552659997933799/Mainbanner.png",
+      src: "/Category/GPU/1",
+    },
+  ];
 
   window.scrollTo(0, 0);
 
