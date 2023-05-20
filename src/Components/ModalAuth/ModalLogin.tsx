@@ -19,7 +19,7 @@ const ModalLogin: React.FC<ModalLoginProps> = ({ onClose }) => {
   }
 
   const outsideModalClick = (e: React.MouseEvent) => {
-    if (e.target.className === "modal active") {
+    if ((e.target as HTMLElement).className === "modal active") {
       onClose();
     }
   };

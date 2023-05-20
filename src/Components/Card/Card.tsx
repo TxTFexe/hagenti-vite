@@ -4,7 +4,6 @@ import { CartItem, addItem } from "../../redux/slices/cartSlice";
 import { RootState, useAppDispath } from "../../redux/store";
 import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
 import {
-  FavoriteItem,
   addFavoriteItem,
   removeFavoriteItem,
 } from "../../redux/slices/favoriteSlice";

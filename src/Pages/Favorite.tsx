@@ -2,10 +2,7 @@ import React from "react";
 import { RootState, useAppDispath } from "../redux/store";
 import { useSelector } from "react-redux";
 import { AiFillHeart } from "react-icons/ai";
-import {
-  FavoriteItem,
-  removeFavoriteItem,
-} from "../redux/slices/favoriteSlice";
+import { removeFavoriteItem } from "../redux/slices/favoriteSlice";
 import { Link } from "react-router-dom";
 import { CartItem, addItem } from "../redux/slices/cartSlice";
 
@@ -31,7 +28,7 @@ const Favorite: React.FC = () => {
           <span>{totalCount}</span>
         </div>
         <div className="favorite-grid">
-          {items.map((item: FavoriteItem, index) => (
+          {items.map((item: any, index) => (
             <div key={index} className="favorite-product-item">
               <AiFillHeart
                 title="Удалить из избранного"
