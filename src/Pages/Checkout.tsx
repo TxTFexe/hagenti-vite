@@ -11,7 +11,7 @@ function Checkout() {
     "г.Москва Ул. Пушкина Дом колотушкина 11 Квартира 25",
   ]);
 
-  const onChangeAdressInput = (e: EventListener) => {
+  const onChangeAdressInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     setAdressInput(e.target.value);
   };
 

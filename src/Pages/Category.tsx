@@ -29,7 +29,7 @@ const Category: React.FC = () => {
   const getProducts = async () => {
     const sortBy = sort.sortProperty.replace("-", "");
     const order = sort.sortProperty.includes("-") ? "asc" : "desc";
-    const category = categoryName?.toUpperCase();
+    const category = categoryName?.toUpperCase()!;
 
     dispatch(
       fetchProducts({

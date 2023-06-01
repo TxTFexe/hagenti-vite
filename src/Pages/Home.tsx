@@ -44,7 +44,7 @@ const Home: React.FC = () => {
     }
   }, []);
 
-  const onCLickAdd = (item: CartItem) => {
+  const onCLickAdd = (item: any) => {
     dispatch(addItem(item));
   };
 
