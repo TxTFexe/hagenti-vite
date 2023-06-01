@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { CartItem, EmptyCart } from "../Components";
 import { RootState, useAppDispath } from "../redux/store";
 import { clearItems } from "../redux/slices/cartSlice";
+import { Link } from "react-router-dom";
 
 const Cart: React.FC = () => {
   const dispatch = useAppDispath();
@@ -58,7 +59,7 @@ const Cart: React.FC = () => {
               <p>{totalPrice.toLocaleString()}₽</p>
             </div>
           </div>
-          <a href="/">Оформить заказ</a>
+          <Link to="/checkout">Оформить заказ</Link>
         </div>
       </div>
     </div>

@@ -12,9 +12,9 @@ const Configurator: React.FC = () => {
       : "";
   };
 
-  const onChange = (newValue: any) => {
+  const onChange = React.useCallback((newValue: any) => {
     setCurrentVideocard(newValue.value);
-  };
+  }, []);
 
   console.log(currentVideocard);
 
@@ -34,6 +34,10 @@ const Configurator: React.FC = () => {
     { value: "strawberry", label: "Strawberry" },
     { value: "vanilla", label: "Vanilla" },
   ];
+
+  React.useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
     <div className="container">

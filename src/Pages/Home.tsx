@@ -7,7 +7,8 @@ import rtx2080 from "../assets/Img/rtx2080.png";
 // import banner3 from "../Assets/Img/TestBanner2.png";
 // import mainBanner from "../Assets/Img/Mainbanner.png";
 import Slider from "react-slick";
-
+import { useAppDispath } from "../redux/store";
+import { CartItem, addItem } from "../redux/slices/cartSlice";
 import "slick-carousel/slick/slick.scss";
 import "slick-carousel/slick/slick-theme.scss";
 
@@ -23,6 +24,7 @@ const mainBlockAnimation = {
 };
 
 const Home: React.FC = () => {
+  const dispatch = useAppDispath();
   const [width, setWidth] = useState(0);
   const carousel = useRef<HTMLInputElement | null>(null);
 
@@ -42,6 +44,10 @@ const Home: React.FC = () => {
     }
   }, []);
 
+  const onCLickAdd = (item: CartItem) => {
+    dispatch(addItem(item));
+  };
+
   const categoriesAndURL = [
     { name: "Видеокарты", url: "gpu" },
     { name: "Процессоры", url: "cpu" },
@@ -56,52 +62,61 @@ const Home: React.FC = () => {
 
   const data = [
     {
+      id: "101",
       name: "RTX 3080",
-      image: rtx2080,
-      price: "64999",
-      link: "/GPU/1",
+      pic: rtx2080,
+      price: 64999,
+      link: "/gpu/1",
     },
     {
+      id: "100",
       name: "Ryzen 9 5900x",
-      image:
-        "https://www.amd.com/system/files/2022-11/1761310-amd-ryzen-9-7000-series-PIB-angle-1260x709.png",
-      price: "50115",
-      link: "/CPU/1",
+      pic: "https://www.amd.com/system/files/2022-11/1761310-amd-ryzen-9-7000-series-PIB-angle-1260x709.png",
+      price: 50115,
+      link: "/cpu/1",
     },
     {
+      id: "102",
       name: "Z790 AORUS",
-      image:
-        "https://www.gigabyte.com/Image/1179b2ed6a06bb7f43bd798c948ebf92/Product/32318/webp/1000",
-      price: "49990",
+      pic: "https://www.gigabyte.com/Image/1179b2ed6a06bb7f43bd798c948ebf92/Product/32318/webp/1000",
+      price: 49990,
       link: "/Motherboards/1",
     },
     {
+      id: "103",
       name: "RTX 3080",
-      image: rtx2080,
-      price: "64999",
+      pic: rtx2080,
+      price: 64999,
       link: "/GPU/1",
     },
     {
+      id: "140",
       name: "RTX 3080",
-      image: rtx2080,
-      price: "64999",
+      pic: rtx2080,
+      price: 64999,
       link: "/GPU/1",
     },
     {
+      id: "200",
       name: "RTX 3080",
-      image: rtx2080,
-      price: "64999",
+      pic: rtx2080,
+      price: 64999,
       link: "/GPU/1",
     },
     {
+      id: "106",
       name: "RTX 3080",
-      image: rtx2080,
-      price: "64999",
+      pic: rtx2080,
+      price: 64999,
       link: "/GPU/1",
     },
   ];
 
   const bannerImages = [
+    {
+      img: "https://cdn.discordapp.com/attachments/950811967742947348/1109552659997933799/Mainbanner.png",
+      src: "/Category/GPU/1",
+    },
     {
       img: "https://cdn.discordapp.com/attachments/950811967742947348/1109552659997933799/Mainbanner.png",
       src: "/Category/GPU/1",
@@ -151,10 +166,15 @@ const Home: React.FC = () => {
             {data.map((item, id) => (
               <div key={id} className="mainpage-bot-block-left">
                 <Link to={item.link}>{item.name}</Link>
-                <img src={item.image} />
+                <img src={item.pic} />
                 <div className="category-content__buy__block">
                   <p>{Number(item.price).toLocaleString()}₽</p>
-                  <a className="category-content__item__button">В корзину</a>
+                  <a
+                    onClick={() => onCLickAdd(item)}
+                    className="category-content__item__button"
+                  >
+                    В корзину
+                  </a>
                 </div>
               </div>
             ))}

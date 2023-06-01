@@ -18,8 +18,6 @@ const Search: React.FC = React.memo(() => {
   const inputRef = React.useRef<HTMLInputElement>(null);
   const searchRef = React.useRef<HTMLDivElement>(null);
 
-  console.log(suggestions);
-
   const onClickClear = () => {
     dispatch(setSearch(""));
     setValue("");
@@ -84,7 +82,6 @@ const Search: React.FC = React.memo(() => {
             <Link to={"/GPU/1"}>GIGABYTE AORUS GeForce RTX 3080</Link>
             <Link to={"/GPU/2"}>GIGABYTE AORUS GeForce RTX 3080Ti</Link>
             <Link to={"/GPU/3"}>GIGABYTE AORUS GeForce RTX 3080</Link>
-            <Link to={"/GPU/4"}>GIGABYTE AORUS GeForce RTX 3080Ti</Link>
           </div>
         </div>
       )}

@@ -2,7 +2,6 @@ import React from "react";
 import { Card, Pagination, Sortings, Filters } from "../Components";
 import { useSelector } from "react-redux";
 import Skeleton from "../Components/ItemBlock/Skeleton";
-import { setCurrentPage } from "../redux/slices/filterSlice";
 import { fetchProducts } from "../redux/slices/productsSlice";
 import { useParams } from "react-router-dom";
 import { RootState, useAppDispath } from "../redux/store";
@@ -11,6 +10,7 @@ import { RootState, useAppDispath } from "../redux/store";
 
 const Category: React.FC = () => {
   const { categoryName } = useParams();
+  const [currentPage, setCurrentPage] = React.useState(1);
 
   //const navigate = useNavigate();
 
@@ -19,12 +19,17 @@ const Category: React.FC = () => {
     (state: RootState) => state.search.searchValue
   );
   const { items, status } = useSelector((state: RootState) => state.products);
-  const { sort, currentPage } = useSelector((state: RootState) => state.filter);
+  const { sort } = useSelector((state: RootState) => state.filter);
+
+  // React.useEffect(() => {
+  //   dispatch(setCurrentPage(1));
+  // }, []);
 
   //Получение данных из redux
   const getProducts = async () => {
     const sortBy = sort.sortProperty.replace("-", "");
     const order = sort.sortProperty.includes("-") ? "asc" : "desc";
+    const category = categoryName?.toUpperCase();
 
     dispatch(
       fetchProducts({
@@ -32,6 +37,7 @@ const Category: React.FC = () => {
         order,
         currentPage,
         searchValue,
+        category,
       })
     );
 
@@ -50,7 +56,7 @@ const Category: React.FC = () => {
 
   //Смена страницы на redux
   const onChangePage = React.useCallback((number: number) => {
-    dispatch(setCurrentPage(number));
+    setCurrentPage(number);
   }, []);
 
   //Отлавливание изменений для данных
@@ -88,7 +94,7 @@ const Category: React.FC = () => {
         {/* Сделать фильтры */}
         <Filters />
         <div className="category-content">
-          {status == "loading"
+          {status === "loading"
             ? [...new Array(4)].map((_, index) => <Skeleton key={index} />)
             : videocards}
         </div>

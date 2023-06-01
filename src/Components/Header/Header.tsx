@@ -34,7 +34,7 @@ const Header: React.FC = () => {
             <Link to="/" className={headerStyles.logo}>
               <span>Hagenti</span>
             </Link>
-            <Link to="/Configurator" className={headerStyles.nav__button}>
+            <Link to="/configurator" className={headerStyles.nav__button}>
               <span>Конфигуратор ПК</span>
             </Link>
           </div>
@@ -58,7 +58,7 @@ const Header: React.FC = () => {
               </div>
             </li>
             <li>
-              <Link to={"/Favorite"} className={headerStyles.nav__item}>
+              <Link to={"/favorite"} className={headerStyles.nav__item}>
                 <AiOutlineHeart className="nav-item-icon" />
                 {/* Избранное */}
               </Link>
@@ -68,7 +68,7 @@ const Header: React.FC = () => {
               onMouseLeave={() => setShowCartPopup(false)}
             >
               <NavItemCount props={[items, totalCount]} />
-              <Link to={"/Cart"} className={headerStyles.nav__item}>
+              <Link to={"/cart"} className={headerStyles.nav__item}>
                 <FiShoppingCart className="nav-item-icon" />
                 {/* Корзина */}
               </Link>

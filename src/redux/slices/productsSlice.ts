@@ -14,11 +14,12 @@ type Product = {
 type FetchProductsParams = {
   sortBy: string;
   order: string;
-  currentPage: number; 
+  currentPage: number;
   searchValue: string;
+  category: string;
 }
 
-enum Status{
+enum Status {
   LOADING = 'loading',
   SUCSESS = 'sucsess',
   ERROR = 'error',
@@ -32,9 +33,10 @@ interface ProductsSliceState {
 export const fetchProducts = createAsyncThunk<Product[], FetchProductsParams>(
   "product/fetchProductsStatus",
   async (params) => {
-    const { sortBy, order, currentPage, searchValue } = params;
+    const { sortBy, order, currentPage, searchValue, category } = params;
+    console.log(currentPage)
     const { data } = await axios.get<Product[]>(
-      `https://6395a92790ac47c680703bcd.mockapi.io/GPU?page=${currentPage}&limit=5&sortBy=${sortBy}&order=${order}&search=${searchValue}`
+      `https://6395a92790ac47c680703bcd.mockapi.io/${category}?page=${currentPage}&limit=10&sortBy=${sortBy}&order=${order}&search=${searchValue}`
     );
     return data;
   }

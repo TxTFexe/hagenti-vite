@@ -7,7 +7,6 @@ import {
   addFavoriteItem,
   removeFavoriteItem,
 } from "../../redux/slices/favoriteSlice";
-import { useSelector } from "react-redux";
 import cardStyles from "./Card.module.scss";
 
 type CardProps = {
@@ -53,8 +52,6 @@ const Card: React.FC<CardProps> = ({ id, pic, name, price, count, type }) => {
     "https://static.gigabyte.com/StaticFile/Image/Global/303d4516244d408a66af70a74dfb8fe6/Product/26168",
     "https://static.gigabyte.com/StaticFile/Image/Global/303d4516244d408a66af70a74dfb8fe6/Product/26169",
   ]);
-
-  //Добавить функционал добавления в избранное
 
   return (
     <div className="category-content__item">

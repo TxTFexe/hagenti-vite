@@ -31,6 +31,7 @@ const UserCabinet: React.FC = () => {
           <h1>Личные данные</h1>
           <span>Имя: {userData.fullName}</span>
           <span>Email: {userData.email}</span>
+          <span>Адрес доставки:</span>
         </div>
       </div>
     </div>

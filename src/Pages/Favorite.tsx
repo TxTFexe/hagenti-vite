@@ -20,6 +20,10 @@ const Favorite: React.FC = () => {
     dispath(removeFavoriteItem(id));
   };
 
+  React.useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <div className="container">
       <div className="favorite">
@@ -37,10 +41,10 @@ const Favorite: React.FC = () => {
               <Link to={"/gpu/" + item.id}>
                 <img src={item.pic} draggable="false" />
               </Link>
-              <Link to={"/gpu/" + item.id}>{item.name}</Link>
-              <br />
-              <br />
               <span>{item.price.toLocaleString()}₽</span>
+              <br />
+              <br />
+              <Link to={"/gpu/" + item.id}>{item.name}</Link>
               <br />
               <br />
               <button onClick={() => addToCart(item)}>В корзину</button>
