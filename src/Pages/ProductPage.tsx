@@ -409,7 +409,7 @@ const ProductPage: React.FC = () => {
                     </div>
                   </div>
                   <p className="comment-content">
-                    Ну и хуйня, сгорела по дороге домой
+                    Не смог оценить, сгорела по дороге домой
                   </p>
                 </div>
               </div>
