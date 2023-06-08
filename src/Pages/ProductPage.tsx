@@ -1,18 +1,28 @@
-import React, { useState } from "react";
+import React, { ReactEventHandler, useState } from "react";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
-import { AiOutlineHeart } from "react-icons/ai";
+import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
+import { FiUser } from "react-icons/fi";
 import { useNavigate, useParams } from "react-router-dom";
 import { addItem } from "../redux/slices/cartSlice";
 import { useAppDispath } from "../redux/store";
-import { addFavoriteItem } from "../redux/slices/favoriteSlice";
+import {
+  addFavoriteItem,
+  removeFavoriteItem,
+} from "../redux/slices/favoriteSlice";
 import { Product } from "../redux/slices/favoriteSlice";
 
 const ProductPage: React.FC = () => {
   const dispatch = useDispatch();
   const [product, setProduct] = React.useState<Product>();
+  const [onFavorite, setOnFavorite] = React.useState(false);
+  const [review, setReview] = React.useState("");
   const [showReviews, setShowReviews] = useState(5);
   const { productId, categoryName } = useParams();
+  const [currentSection, setCurrentSection] = React.useState(0);
+  const [currentSlide, setCurrentSlide] = React.useState(0);
+  const [numberSlide, setNumberSlide] = React.useState(1);
+  const slider = React.useRef<HTMLDivElement>(null);
   const navigate = useNavigate();
 
   React.useEffect(() => {
@@ -70,6 +80,12 @@ const ProductPage: React.FC = () => {
       type,
     };
     dispatch(addFavoriteItem(item));
+    setOnFavorite(true);
+  };
+
+  const onClickDeleteFromFavorite = ({ id }: Product) => {
+    dispatch(removeFavoriteItem(id));
+    setOnFavorite(false);
   };
 
   const sections = ["Характеристики", "Отзывы"];
@@ -80,11 +96,6 @@ const ProductPage: React.FC = () => {
     "https://static.gigabyte.com/StaticFile/Image/Global/303d4516244d408a66af70a74dfb8fe6/Product/26168",
     "https://static.gigabyte.com/StaticFile/Image/Global/303d4516244d408a66af70a74dfb8fe6/Product/26169",
   ]);
-
-  const [currentSection, setCurrentSection] = React.useState(0);
-  const [currentSlide, setCurrentSlide] = React.useState(0);
-  const [numberSlide, setNumberSlide] = React.useState(1);
-  const slider = React.useRef<HTMLDivElement>(null);
 
   const swapImages = (currSlide: number) => {
     const slidesPositions = [0, -480, -970, -1460];
@@ -121,6 +132,18 @@ const ProductPage: React.FC = () => {
     window.scrollTo(0, 0);
   }, []);
 
+  const reviewHandler = (e: any) => {
+    setReview(e.target.value);
+  };
+
+  const sendRewiev = async () => {
+    const { data } = await axios.post(
+      "http://localhost:4444/send-review",
+      review
+    );
+    console.log(data);
+  };
+
   if (!product) {
     return (
       <div className="container">
@@ -154,10 +177,6 @@ const ProductPage: React.FC = () => {
                 {slides.map((slide, i) => {
                   return <img src={slide} key={i}></img>;
                 })}
-                {/* <img src={product.pic}></img>
-                <img src="https://static.gigabyte.com/StaticFile/Image/Global/303d4516244d408a66af70a74dfb8fe6/Product/26165"></img>
-                <img src="https://static.gigabyte.com/StaticFile/Image/Global/303d4516244d408a66af70a74dfb8fe6/Product/26168"></img>
-                <img src="https://static.gigabyte.com/StaticFile/Image/Global/303d4516244d408a66af70a74dfb8fe6/Product/26169"></img> */}
               </div>
             </div>
           </div>
@@ -222,8 +241,16 @@ const ProductPage: React.FC = () => {
                 <h3>{Number(product.price).toLocaleString()}₽</h3>
                 <h4>{Math.round(product.price / 4).toLocaleString()}₽ x 4</h4>
                 <span>Долями</span>
-                <button onClick={() => onClickAddToFavorite(product)}>
-                  <AiOutlineHeart />
+                <button>
+                  {onFavorite ? (
+                    <AiFillHeart
+                      onClick={() => onClickDeleteFromFavorite(product)}
+                    />
+                  ) : (
+                    <AiOutlineHeart
+                      onClick={() => onClickAddToFavorite(product)}
+                    />
+                  )}
                 </button>
               </div>
               <br />
@@ -317,15 +344,76 @@ const ProductPage: React.FC = () => {
           </div>
         )}
         {currentSection === 1 && (
+          // <div className="product__feedback">
+          //   {[...new Array(showReviews)].map((_, index) => (
+          //     <div key={index} className="product__feedback__item">
+          //       1
+          //     </div>
+          //   ))}
+          //
+          // </div>
           <div className="product__feedback">
-            {[...new Array(showReviews)].map((_, index) => (
-              <div key={index} className="product__feedback__item">
-                1
+            <div className="text-box">
+              <div className="box-container">
+                <textarea
+                  placeholder="Оставить отзыв"
+                  value={review}
+                  onChange={(e) => reviewHandler(e)}
+                ></textarea>
+                <div>
+                  <div className="formatting">
+                    <button type="button"></button>
+                    <button
+                      type="submit"
+                      className="send"
+                      onClick={sendRewiev}
+                      title="Send"
+                    >
+                      →
+                    </button>
+                  </div>
+                </div>
               </div>
-            ))}
-            <button onClick={() => setShowReviews((prev) => prev + 5)}>
-              Показать ещё
-            </button>
+            </div>
+            <div className="card">
+              <div className="comments">
+                <div className="comment-react">
+                  <button>
+                    <svg
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      height="16"
+                      width="16"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        fill="#707277"
+                        strokeLinecap="round"
+                        strokeWidth="2"
+                        stroke="#707277"
+                        d="M19.4626 3.99415C16.7809 2.34923 14.4404 3.01211 13.0344 4.06801C12.4578 4.50096 12.1696 4.71743 12 4.71743C11.8304 4.71743 11.5422 4.50096 10.9656 4.06801C9.55962 3.01211 7.21909 2.34923 4.53744 3.99415C1.01807 6.15294 0.221721 13.2749 8.33953 19.2834C9.88572 20.4278 10.6588 21 12 21C13.3412 21 14.1143 20.4278 15.6605 19.2834C23.7783 13.2749 22.9819 6.15294 19.4626 3.99415Z"
+                      ></path>
+                    </svg>
+                  </button>
+                  <hr />
+                  <span>{0}</span>
+                </div>
+                <div className="comment-container">
+                  <div className="user">
+                    <div className="user-pic">
+                      <FiUser />
+                    </div>
+                    <div className="user-info">
+                      <span>Glek</span>
+                      <p>25 мая 2023</p>
+                    </div>
+                  </div>
+                  <p className="comment-content">
+                    Ну и хуйня, сгорела по дороге домой
+                  </p>
+                </div>
+              </div>
+            </div>
           </div>
         )}
       </div>

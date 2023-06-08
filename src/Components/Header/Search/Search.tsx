@@ -66,12 +66,11 @@ const Search: React.FC = React.memo(() => {
             <button
               onClick={onClickClear}
               className={searchStyles.search_markX__icon}
-              type="submit"
             >
               <HiOutlineXMark />
             </button>
           )}
-          <button type="submit" className={searchStyles.search_icon}>
+          <button className={searchStyles.search_icon}>
             <FaSearch />
           </button>
         </form>

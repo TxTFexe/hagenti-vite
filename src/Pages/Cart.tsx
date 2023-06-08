@@ -7,13 +7,13 @@ import { Link } from "react-router-dom";
 
 const Cart: React.FC = () => {
   const dispatch = useAppDispath();
-  const { totalCount, totalPrice, items } = useSelector(
+  const { items, totalCheckedCount, totalCheckedPrice } = useSelector(
     (state: RootState) => state.cart
   );
 
-  //   if (!totalPrice) {
-  //     return <EmptyCart />;
-  //   }
+  // if (!totalCount) {
+  //   return <EmptyCart />;
+  // }
 
   const clearCart = () => {
     dispatch(clearItems());
@@ -43,20 +43,20 @@ const Cart: React.FC = () => {
             <h3>Детали заказа</h3>
             <div className="order-details-item">
               <p>
-                {totalCount}.{" "}
-                {totalCount > 1 && totalCount < 5
+                {totalCheckedCount}.{" "}
+                {totalCheckedCount > 1 && totalCheckedCount < 5
                   ? "Товара"
-                  : totalCount > 4
+                  : totalCheckedCount > 4
                   ? "Товаров"
-                  : totalCount === 0
+                  : totalCheckedCount === 0
                   ? "Ничего не выбрано"
                   : "Товар"}
               </p>
-              <p>{totalPrice.toLocaleString()}₽</p>
+              <p>{totalCheckedPrice.toLocaleString()}₽</p>
             </div>
             <div className="order-details-item sum">
               <p>Сумма</p>
-              <p>{totalPrice.toLocaleString()}₽</p>
+              <p>{totalCheckedPrice.toLocaleString()}₽</p>
             </div>
           </div>
           <Link to="/checkout">Оформить заказ</Link>

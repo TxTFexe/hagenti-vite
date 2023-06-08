@@ -1,10 +1,12 @@
 import React from "react";
 import AsyncSelect from "react-select";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Atx from "../assets/Img/ATX.png";
 
 const Configurator: React.FC = () => {
   const [currentVideocard, setCurrentVideocard] = React.useState("");
+  const navigate = useNavigate();
 
   const getValue = () => {
     return currentVideocard
@@ -36,8 +38,12 @@ const Configurator: React.FC = () => {
   ];
 
   React.useEffect(() => {
-    window.scrollTo(0, 0);
+    navigate("/");
   }, []);
+
+  if (currentVideocard === "") {
+    return <></>;
+  }
 
   return (
     <div className="container">

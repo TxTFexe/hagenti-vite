@@ -17,6 +17,9 @@ interface CartSliceState {
     totalCount: number;
     totalPrice: number;
     items: CartItem[];
+    checkedItems: CartItem[];
+    totalCheckedCount: number;
+    totalCheckedPrice: number;
 }
 
 const { items, totalPrice, totalCount } = getCartFromLS();
@@ -25,6 +28,9 @@ const initialState: CartSliceState = {
     totalCount,
     totalPrice,
     items,
+    checkedItems: [],
+    totalCheckedCount: 0,
+    totalCheckedPrice: 0
 };
 
 const cartSlice = createSlice({
@@ -36,9 +42,9 @@ const cartSlice = createSlice({
 
             if (findItem) {
                 findItem.count++;
-            } else{
+            } else {
                 state.items.push({
-                    ...action.payload, 
+                    ...action.payload,
                     count: 1,
                 });
             }
@@ -49,40 +55,72 @@ const cartSlice = createSlice({
             state.items = state.items.filter(obj => obj.id !== action.payload);
             state.totalPrice = calcTotalPrice(state.items)
             state.totalCount = calcTotalCount(state.items)
+            state.totalCheckedPrice = calcTotalPrice(state.items)
+            state.totalCheckedCount = calcTotalCount(state.items)
         },
         clearItems(state) {
             state.items = [];
+            state.checkedItems = [];
             state.totalCount = 0;
             state.totalPrice = 0;
+            state.totalCheckedCount = 0;
+            state.totalCheckedPrice = 0;
         },
-        incrementItemCount(state, action: PayloadAction<CartItem>){
+        incrementItemCount(state, action: PayloadAction<CartItem>) {
             const findItem = findItemInCart(state.items, action.payload.id)
 
             if (findItem) {
                 findItem.count++;
-            } else{
+            } else {
                 return;
             }
 
             state.totalPrice = calcTotalPrice(state.items)
             state.totalCount = calcTotalCount(state.items)
+
+            const findCheckedItem = findItemInCart(state.checkedItems, action.payload.id)
+            if (findCheckedItem) {
+                state.totalCheckedPrice = calcTotalPrice(state.items)
+                state.totalCheckedCount = calcTotalCount(state.items)
+            }
         },
-        decrementItemCount(state, action: PayloadAction<CartItem>){
+        decrementItemCount(state, action: PayloadAction<CartItem>) {
             const findItem = findItemInCart(state.items, action.payload.id)
 
             if (findItem) {
-                if(findItem.count > 1)
-                findItem.count--;
-            } else{
+                if (findItem.count > 1)
+                    findItem.count--;
+            } else {
                 return;
             }
 
             state.totalPrice = calcTotalPrice(state.items)
             state.totalCount = calcTotalCount(state.items)
-        }
+
+            const findCheckedItem = findItemInCart(state.checkedItems, action.payload.id)
+            if (findCheckedItem) {
+                state.totalCheckedPrice = calcTotalPrice(state.items)
+                state.totalCheckedCount = calcTotalCount(state.items)
+            }
+        },
+        addCheckedItem(state, action: PayloadAction<CartItem>) {
+            const findItem = findItemInCart(state.items, action.payload.id)
+
+            if (findItem) {
+                state.checkedItems.push(action.payload);
+            }
+
+            state.totalCheckedPrice = calcTotalPrice(state.checkedItems)
+            state.totalCheckedCount = calcTotalCount(state.checkedItems)
+        },
+        removeCheckedItem(state, action: PayloadAction<string>) {
+            state.checkedItems = state.checkedItems.filter(obj => obj.id !== action.payload);
+            state.totalCheckedPrice = calcTotalPrice(state.checkedItems)
+            state.totalCheckedCount = calcTotalCount(state.checkedItems)
+        },
     }
 });
 
-export const { addItem, removeItem, clearItems, decrementItemCount, incrementItemCount } = cartSlice.actions;
+export const { addItem, removeItem, clearItems, decrementItemCount, incrementItemCount, addCheckedItem, removeCheckedItem } = cartSlice.actions;
 
 export default cartSlice.reducer;

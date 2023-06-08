@@ -7,6 +7,7 @@ function Checkout() {
   const [adressInput, setAdressInput] = React.useState("");
   const [hideInput, setHideInput] = React.useState(true);
   const [payment, setPayment] = React.useState("");
+  const [currentAdress, setCurrentAdress] = React.useState("");
   const [adress, setAdress] = React.useState([
     "г.Москва Ул. Пушкина Дом колотушкина 11 Квартира 25",
   ]);
@@ -15,10 +16,8 @@ function Checkout() {
     setAdressInput(e.target.value);
   };
 
-  console.log(adressInput);
-
   const dispatch = useAppDispath();
-  const { totalCount, totalPrice, items } = useSelector(
+  const { totalCheckedCount, totalCheckedPrice, checkedItems } = useSelector(
     (state: RootState) => state.cart
   );
 
@@ -29,6 +28,8 @@ function Checkout() {
     }
     setAdressInput("");
   };
+
+  const createOrder = async () => {};
 
   return (
     <div className="container">
@@ -41,7 +42,11 @@ function Checkout() {
             <div className="checkout__block">
               <h1 className="checkout__block__title">Выбор адреса доставки</h1>
               {adress.map((adr, i) => (
-                <div key={i} className="checkout__block__selection">
+                <div
+                  onClick={() => setCurrentAdress(adr)}
+                  key={i}
+                  className="checkout__block__selection"
+                >
                   <span>{adr}</span>
                 </div>
               ))}
@@ -57,11 +62,17 @@ function Checkout() {
             </div>
             <div className="checkout__block">
               <h1 className="checkout__block__title">Способ оплаты</h1>
-              <div className="checkout__block__selection">
+              <div
+                onClick={() => setPayment("Банковской картой")}
+                className="checkout__block__selection"
+              >
                 <span>Банковской картой</span>
                 <p>Visa, Mastercard, Мир</p>
               </div>
-              <div className="checkout__block__selection">
+              <div
+                onClick={() => setPayment("Наличными")}
+                className="checkout__block__selection"
+              >
                 <span>Наличными</span>
                 <p>Оплата наличными при получении</p>
               </div>
@@ -69,7 +80,7 @@ function Checkout() {
             <div className="checkout__block">
               <h1 className="checkout__block__title">Состав заказа</h1>
               <div className="checkout__block__list">
-                {items.map((item) => (
+                {checkedItems.map((item) => (
                   <Link to={"/GPU/" + item.id}>
                     <div className="checkout__block__product">
                       <img src={item.pic}></img>
@@ -83,8 +94,8 @@ function Checkout() {
             <div>
               <h1>К оплате</h1>
               <div className="order-details-item">
-                <p>{totalCount}. Товар</p>
-                <p>{totalPrice}₽</p>
+                <p>{totalCheckedCount}. Товар</p>
+                <p>{totalCheckedPrice}₽</p>
               </div>
               <div className="order-details-item">
                 <p>Скидка</p>
@@ -96,10 +107,10 @@ function Checkout() {
               </div>
               <div className="order-details-item sum">
                 <p>Сумма</p>
-                <p>{totalPrice}₽</p>
+                <p>{totalCheckedPrice}₽</p>
               </div>
             </div>
-            <a>Оплатить</a>
+            <a onClick={createOrder}>Оплатить</a>
           </div>
         </div>
       </div>

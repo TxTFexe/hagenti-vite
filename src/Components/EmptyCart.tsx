@@ -7,7 +7,7 @@ const EmptyCart: React.FC = () => {
     <div className="container">
       <div className="cart empty-cart">
         <div className="cart-content">
-          <h3>Ваша корзина пуста, как и кошелёк</h3>
+          <h3>{"Ваша корзина пуста :("}</h3>
           <button
             className="autorization-button"
             onClick={() => setModalActive(!modalActive)}
