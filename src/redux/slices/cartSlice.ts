@@ -53,6 +53,7 @@ const cartSlice = createSlice({
         },
         removeItem(state, action: PayloadAction<string>) {
             state.items = state.items.filter(obj => obj.id !== action.payload);
+            state.checkedItems = state.checkedItems.filter(obj => obj.id !== action.payload);
             state.totalPrice = calcTotalPrice(state.items)
             state.totalCount = calcTotalCount(state.items)
             state.totalCheckedPrice = calcTotalPrice(state.items)
@@ -79,6 +80,13 @@ const cartSlice = createSlice({
             state.totalCount = calcTotalCount(state.items)
 
             const findCheckedItem = findItemInCart(state.checkedItems, action.payload.id)
+
+            // if (findCheckedItem) {
+            //     findCheckedItem.count++;
+            // } else {
+            //     return;
+            // }
+
             if (findCheckedItem) {
                 state.totalCheckedPrice = calcTotalPrice(state.items)
                 state.totalCheckedCount = calcTotalCount(state.items)
@@ -98,6 +106,14 @@ const cartSlice = createSlice({
             state.totalCount = calcTotalCount(state.items)
 
             const findCheckedItem = findItemInCart(state.checkedItems, action.payload.id)
+
+            // if (findCheckedItem) {
+            //     if (findCheckedItem.count > 1)
+            //         findCheckedItem.count--;
+            // } else {
+            //     return;
+            // }
+
             if (findCheckedItem) {
                 state.totalCheckedPrice = calcTotalPrice(state.items)
                 state.totalCheckedCount = calcTotalCount(state.items)
