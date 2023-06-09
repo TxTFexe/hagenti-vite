@@ -117,10 +117,10 @@ const ProductPage: React.FC = () => {
 
   const setSection = (i: number) => {
     setCurrentSection(i);
-    window.scrollTo({
-      top: 720,
-      behavior: "smooth",
-    });
+    // window.scrollTo({
+    //   top: 720,
+    //   behavior: "smooth",
+    // });
   };
 
   React.useEffect(() => {

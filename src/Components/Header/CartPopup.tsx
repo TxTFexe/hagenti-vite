@@ -17,7 +17,14 @@ const CartPopup: React.FC<CartPopupProps> = ({
   return (
     <div className={headerStyles.cart__popup}>
       <div className={headerStyles.cart__popup__title}>
-        <span>{cartTotalCount}. Товар</span>
+        <span>
+          {cartTotalCount}.{" "}
+          {cartTotalCount > 1 && cartTotalCount < 5
+            ? "Товара"
+            : cartTotalCount > 4
+            ? "Товаров"
+            : "Товар"}
+        </span>
         <span>{cartTotalPrice.toLocaleString()}₽</span>
       </div>
       <div className={headerStyles.cart__popup__items}>

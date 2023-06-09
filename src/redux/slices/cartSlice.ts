@@ -81,15 +81,15 @@ const cartSlice = createSlice({
 
             const findCheckedItem = findItemInCart(state.checkedItems, action.payload.id)
 
-            // if (findCheckedItem) {
-            //     findCheckedItem.count++;
-            // } else {
-            //     return;
-            // }
+            if (findCheckedItem) {
+                findCheckedItem.count++;
+            } else {
+                return;
+            }
 
             if (findCheckedItem) {
-                state.totalCheckedPrice = calcTotalPrice(state.items)
-                state.totalCheckedCount = calcTotalCount(state.items)
+                state.totalCheckedPrice = calcTotalPrice(state.checkedItems)
+                state.totalCheckedCount = calcTotalCount(state.checkedItems)
             }
         },
         decrementItemCount(state, action: PayloadAction<CartItem>) {
@@ -107,16 +107,16 @@ const cartSlice = createSlice({
 
             const findCheckedItem = findItemInCart(state.checkedItems, action.payload.id)
 
-            // if (findCheckedItem) {
-            //     if (findCheckedItem.count > 1)
-            //         findCheckedItem.count--;
-            // } else {
-            //     return;
-            // }
+            if (findCheckedItem) {
+                if (findCheckedItem.count > 1)
+                    findCheckedItem.count--;
+            } else {
+                return;
+            }
 
             if (findCheckedItem) {
-                state.totalCheckedPrice = calcTotalPrice(state.items)
-                state.totalCheckedCount = calcTotalCount(state.items)
+                state.totalCheckedPrice = calcTotalPrice(state.checkedItems)
+                state.totalCheckedCount = calcTotalCount(state.checkedItems)
             }
         },
         addCheckedItem(state, action: PayloadAction<CartItem>) {

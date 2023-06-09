@@ -1423,6 +1423,18 @@ details > summary {
   }
 }
 
+.checkout__block__selection__active {
+  padding: 22px;
+  border: solid #d3d3d3 2px;
+  border-radius: 15px;
+  margin-bottom: 15px;
+  transition: 0.2s;
+  span {
+    font-size: 18px;
+    color: #d3d3d3;
+  }
+}
+
 .checkout__block__product {
   padding: 10px;
   border: solid var(--main-grey-color) 2px;
@@ -1816,6 +1828,9 @@ details > summary {
   .container {
     max-width: none;
   }
+  main {
+    min-height: 800px;
+  }
   //Homepage and header
   .mainpage-top-grid {
     grid-template-columns: 0;
@@ -1837,8 +1852,31 @@ details > summary {
       margin-right: 15px;
     }
   }
+  .wrapper::-webkit-scrollbar-thumb {
+    background-color: transparent;
+    border: none;
+    border-radius: 10px;
+  }
+  .wrapper::-webkit-scrollbar-track {
+    background: none;
+  }
   .nav-item-count {
     margin: -6px -7px 0px 10px;
+  }
+  .mainpage-bot-block-left {
+    min-width: 200px;
+  }
+  .slick-next:before {
+    font-size: 20px;
+  }
+  .slick-prev:before {
+    font-size: 20px;
+  }
+  .slick-next {
+    right: 15px;
+  }
+  .slick-prev {
+    left: 15px;
   }
   //Category
   .category-filters {
@@ -1856,6 +1894,7 @@ details > summary {
   }
   .category-content__item {
     flex-direction: column;
+    width: auto;
     img {
       height: 190px;
       width: 190px;
@@ -1876,8 +1915,14 @@ details > summary {
   .favorite-product-item {
     height: auto;
     img {
-      width: 240px;
+      width: 180px;
       height: auto;
+    }
+    span {
+      font-size: 18px;
+    }
+    a {
+      font-size: 18px;
     }
   }
   //Cart
@@ -1939,6 +1984,14 @@ details > summary {
     width: auto;
     margin-bottom: 26px;
   }
+  .checkout__block__list {
+    display: block;
+  }
+  .checkout__block__list div {
+    display: flex;
+    width: auto;
+    justify-content: center;
+  }
   //Product page
   .product_grid {
     display: block;
@@ -1971,5 +2024,11 @@ details > summary {
   }
   .image_showcase {
     height: auto;
+  }
+  .image_item {
+    margin: 0.8rem;
+  }
+  .product__specs__bg {
+    grid-template-columns: auto;
   }
 }

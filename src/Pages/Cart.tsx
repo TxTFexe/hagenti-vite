@@ -59,7 +59,9 @@ const Cart: React.FC = () => {
               <p>{totalCheckedPrice.toLocaleString()}₽</p>
             </div>
           </div>
-          <Link to="/checkout">Оформить заказ</Link>
+          <Link to={totalCheckedCount > 0 ? "/checkout" : "/cart"}>
+            Оформить заказ
+          </Link>
         </div>
       </div>
     </div>

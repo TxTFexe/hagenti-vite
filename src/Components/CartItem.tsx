@@ -43,9 +43,7 @@ const CartItem: React.FC<CartItemProps> = ({ item }) => {
   }, []);
 
   const changeCheckbox = () => {
-    console.log(checkedCheckbox);
     setCheckedCheckbox((prev) => !prev);
-    console.log(checkedCheckbox);
     if (checkedCheckbox === false) {
       dispatch(addCheckedItem(item));
     } else {

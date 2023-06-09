@@ -29,6 +29,10 @@ function Checkout() {
     setAdressInput("");
   };
 
+  React.useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   const createOrder = async () => {};
 
   return (
@@ -45,7 +49,11 @@ function Checkout() {
                 <div
                   onClick={() => setCurrentAdress(adr)}
                   key={i}
-                  className="checkout__block__selection"
+                  className={
+                    adr === currentAdress
+                      ? "checkout__block__selection__active"
+                      : "checkout__block__selection"
+                  }
                 >
                   <span>{adr}</span>
                 </div>
@@ -64,14 +72,22 @@ function Checkout() {
               <h1 className="checkout__block__title">Способ оплаты</h1>
               <div
                 onClick={() => setPayment("Банковской картой")}
-                className="checkout__block__selection"
+                className={
+                  "Банковской картой" === payment
+                    ? "checkout__block__selection__active"
+                    : "checkout__block__selection"
+                }
               >
                 <span>Банковской картой</span>
                 <p>Visa, Mastercard, Мир</p>
               </div>
               <div
                 onClick={() => setPayment("Наличными")}
-                className="checkout__block__selection"
+                className={
+                  "Наличными" === payment
+                    ? "checkout__block__selection__active"
+                    : "checkout__block__selection"
+                }
               >
                 <span>Наличными</span>
                 <p>Оплата наличными при получении</p>
@@ -95,7 +111,7 @@ function Checkout() {
               <h1>К оплате</h1>
               <div className="order-details-item">
                 <p>{totalCheckedCount}. Товар</p>
-                <p>{totalCheckedPrice}₽</p>
+                <p>{totalCheckedPrice.toLocaleString()}₽</p>
               </div>
               <div className="order-details-item">
                 <p>Скидка</p>
@@ -107,7 +123,7 @@ function Checkout() {
               </div>
               <div className="order-details-item sum">
                 <p>Сумма</p>
-                <p>{totalCheckedPrice}₽</p>
+                <p>{totalCheckedPrice.toLocaleString()}₽</p>
               </div>
             </div>
             <a onClick={createOrder}>Оплатить</a>
